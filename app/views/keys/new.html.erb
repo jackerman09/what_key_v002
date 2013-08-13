@@ -1,0 +1,13 @@
+<% provide(:title, 'Add Key') %>
+<h1>Add a Key</h1>
+
+<%= form_for(@key) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Enter the key's name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :description, placeholder: "Enter the key's description" %>
+  </div>
+  <%= f.submit "Add the Key", class: "btn btn-large btn-primary" %>
+<% end %>

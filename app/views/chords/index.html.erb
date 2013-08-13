@@ -1,0 +1,10 @@
+<% provide(:title, 'All chords') %>
+<h1>All chords</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @chords %>
+</ul>
+
+<%= will_paginate %>

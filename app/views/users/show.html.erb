@@ -9,3 +9,31 @@
     </section>
   </aside>
 </div>
+<div class="row">
+  <div class="span6">
+    <% if @user.keys.any? %>
+      <h3>My Keys (<%= @user.keys.count %>)</h3>
+      <ol class="microposts">
+        <%= render @keys %>
+      </ol>
+      <%= will_paginate @keys %>
+    <% end %>
+    <%= link_to "New Key", new_key_path, 
+                                class: "btn btn-large btn_center" %>
+  </div>
+<!-- </div>
+<div class="row"> -->
+  <div class="span6">
+    <% if @user.chords.any? %>
+      <h3>My Chords (<%= @user.chords.count %>)</h3>
+      <ol class="microposts">
+        <%= render @chords %>
+      </ol>
+      <%= will_paginate @chords %>
+    <% else %>
+      </br>
+    <% end %>
+    <%= link_to "New Chord", new_chord_path, 
+                                class: "btn btn-large" %>
+  </div>
+</div>

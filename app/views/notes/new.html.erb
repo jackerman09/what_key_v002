@@ -1,0 +1,13 @@
+<% provide(:title, 'Add Note') %>
+<h1>Add a Note</h1>
+
+<%= form_for(@note) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Enter the note's name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :description, placeholder: "Enter the note's description" %>
+  </div>
+  <%= f.submit "Add the Note", class: "btn btn-large btn-primary" %>
+<% end %>

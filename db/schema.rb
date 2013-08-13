@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130315230445) do
+ActiveRecord::Schema.define(version: 20130813023402) do
+
+  create_table "chordnotes", force: true do |t|
+    t.integer  "note_id"
+    t.integer  "chord_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chords", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.boolean  "is_public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chords", ["is_public"], name: "index_chords_on_is_public"
+
+  create_table "keys", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.boolean  "is_public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "keys", ["is_public"], name: "index_keys_on_is_public"
 
   create_table "microposts", force: true do |t|
     t.string   "content"
@@ -21,6 +50,31 @@ ActiveRecord::Schema.define(version: 20130315230445) do
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+
+  create_table "note_chords", force: true do |t|
+    t.integer  "note_id"
+    t.integer  "chord_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "note_in_chords", force: true do |t|
+    t.integer  "chord_id"
+    t.integer  "note_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "note_in_chords", ["chord_id", "note_id"], name: "index_note_in_chords_on_chord_id_and_note_id", unique: true
+  add_index "note_in_chords", ["chord_id"], name: "index_note_in_chords_on_chord_id"
+  add_index "note_in_chords", ["note_id"], name: "index_note_in_chords_on_note_id"
+
+  create_table "notes", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"

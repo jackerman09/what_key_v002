@@ -52,11 +52,18 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:key1) { FactoryGirl.create(:key, user: user) }
+    # let!(:key1) { user.keys.build(name: "test", description: "test description", is_public: false) }
 
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "keys" do
+      it { should have_content(key1.name) }
+      it { should have_content(key1.description) }
+    end
   end
 
   describe "signup page" do

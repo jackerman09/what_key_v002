@@ -115,5 +115,11 @@ describe "Authentication" do
         specify { expect(response).to redirect_to(root_url) }
       end
     end
+
+    describe "in the Keys controller" do
+      # keys controller authorization tests
+      
+    end
+
   end
 end

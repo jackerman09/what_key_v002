@@ -1,0 +1,13 @@
+<% provide(:title, @chord.name) %>
+<div class="row">
+  <div class="span12">
+  	<h3><%= @chord.name %> (<%= @chord.description %>)</h3>
+  </div>
+</div>
+<div class="row">
+	<div class="span12">
+  	<ol class="microposts">
+        <%= render @notes %>
+      </ol>
+  </div>
+</div>

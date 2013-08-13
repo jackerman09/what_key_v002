@@ -1,12 +1,19 @@
 SampleApp::Application.routes.draw do
+  get "chordnotes/create"
+  get "chordnotes/destroy"
+  get "noteinchords/create"
+  get "noteinchords/destroy"
   resources :users do
-    member do
-      get :following, :followers
-    end
+    # member do
+    #   get :following, :followers
+    # end
   end
-  resources :sessions,      only: [:new, :create, :destroy]
-  resources :microposts,    only: [:create, :destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :sessions,    only: [:new, :create, :destroy]
+  resources :keys,        only: [:index, :show, :new, :destroy, :create]
+  resources :chords,      only: [:index, :show, :new, :destroy, :create]
+  resources :notes,       only: [:index, :show, :new, :destroy, :create]
+  resources :chordnotes,  only: [:new, :destroy, :create]
+
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'

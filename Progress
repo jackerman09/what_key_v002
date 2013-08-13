@@ -1,0 +1,12 @@
+Progress
+
+			Chords/show
+			<%= f.fields_for :noteinchords do |builder| %>
+			  <fieldset>
+				  <%= f.label :note_id, "Note" %><br />
+				  <%= f.text_field :note_id %><br />
+				  <%= f.check_box :_destroy %>
+				  <%= f.label :_destroy, "Remove Note" %>
+				</fieldset>
+			<% end %>
+			<%= link_to_add_fields "Add Note", f, :noteinchords %>

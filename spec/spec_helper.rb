@@ -52,6 +52,9 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
+  # ActiveSupport::Dependencies.clear
+  # ActiveRecord::Base.instantiate_observers
 
-end
+  # load "#{Rails.root}/config/routes.rb"
+  # Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }  
+end if Spork.using_spork?

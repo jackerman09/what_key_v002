@@ -1,0 +1,13 @@
+<% provide(:title, 'Add Chord') %>
+<h1>Add a Chord</h1>
+
+<%= form_for(@chord) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Enter the chord's name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :description, placeholder: "Enter the chord's description" %>
+  </div>
+  <%= f.submit "Add the Chord", class: "btn btn-large btn-primary" %>
+<% end %>
