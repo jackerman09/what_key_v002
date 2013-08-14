@@ -6,5 +6,7 @@
 <ul class="users">
   <%= render @chords %>
 </ul>
-
+</br>
+<%= link_to "New Chord", new_chord_path, 
+                                class: "btn btn-large" %>
 <%= will_paginate %>

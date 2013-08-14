@@ -1,5 +1,5 @@
 <li>
-  <span class="content"><%= key.name %> (<%= key.description %>)</span>
+	<span class="content"><%= link_to "#{key.name} (#{key.description})", key %> (<%= key.id %>)</span>
   <span class="timestamp">
     Created <%= time_ago_in_words(key.created_at) %> ago.
   </span>

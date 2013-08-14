@@ -11,23 +11,21 @@
 </div>
 <div class="row">
   <div class="span6">
+    <h3>My Keys (<%= @user.keys.count %>)</h3>
     <% if @user.keys.any? %>
-      <h3>My Keys (<%= @user.keys.count %>)</h3>
       <ol class="microposts">
-        <%= render @keys %>
+        <%= render @user.keys %>
       </ol>
       <%= will_paginate @keys %>
     <% end %>
     <%= link_to "New Key", new_key_path, 
                                 class: "btn btn-large btn_center" %>
   </div>
-<!-- </div>
-<div class="row"> -->
   <div class="span6">
+    <h3>My Chords (<%= @user.chords.count %>)</h3>
     <% if @user.chords.any? %>
-      <h3>My Chords (<%= @user.chords.count %>)</h3>
       <ol class="microposts">
-        <%= render @chords %>
+        <%= render @user.chords %>
       </ol>
       <%= will_paginate @chords %>
     <% else %>

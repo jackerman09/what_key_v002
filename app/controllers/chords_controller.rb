@@ -25,6 +25,7 @@ class ChordsController < ApplicationController
 	def destroy
     Chord.find(params[:id]).destroy
     flash[:success] = "Chord removed."
+    redirect_to chords_path
   end
 
   def hasnotes
