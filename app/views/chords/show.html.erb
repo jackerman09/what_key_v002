@@ -11,3 +11,14 @@
       </ol>
   </div>
 </div>
+<div class="row">
+	<div class="span12">
+		<%= form_for(@chord.chordnotes.build(chord_id: @chord.id)) do |f| %>
+		  <div><%= f.hidden_field :chord_id %></div>
+		  <div class="field">
+		  	<%= f.text_field :note_id, placeholder: "Enter the note's id" %>
+  		</div>
+		  <%= f.submit "Add Note", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

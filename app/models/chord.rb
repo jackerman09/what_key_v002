@@ -6,4 +6,16 @@ class Chord < ActiveRecord::Base
 	default_scope -> { order('created_at DESC') }
 	validates :user_id, presence: true
 	validates :name, presence: true
+
+	def hasnote?(note)
+		self.chordnotes.find_by(note_id: note.id)
+	end
+
+	def addnote!(note)
+		self.chordnotes.create!(note_id: note.id)
+	end
+
+	def removenote!(note)
+		self.chordnotes.find_by(note_id: note.id).destroy!
+	end
 end

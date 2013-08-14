@@ -27,6 +27,13 @@ class ChordsController < ApplicationController
     flash[:success] = "Chord removed."
   end
 
+  def hasnotes
+    @title = "Notes"
+    @chord = Chord.find(params[:id])
+    @chords = @chord.notes.paginate(page: params[:page])
+    render 'chord_path'
+  end
+
   
   private
 
