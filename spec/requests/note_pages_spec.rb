@@ -9,12 +9,43 @@ describe "Note pages" do
     let!(:note2) { FactoryGirl.create(:note) }
 
     describe "on the index page" do
-      before { visit notes_path }
       
-      it { should have_content(note1.name) }
-      it { should have_content(note1.description) }
-      it { should have_content(note2.name) }
-      it { should have_content(note2.description) }
+      describe "for a non-signed in user" do
+        before { visit notes_path }
+
+        it { should have_content(note1.name) }
+        it { should have_content(note1.description) }
+        it { should have_content(note2.name) }
+        it { should have_content(note2.description) }
+
+        it { should_not have_content("New Note") }
+      end
+
+      describe "for a non-admin user" do
+        let(:user) { FactoryGirl.create(:user) }
+        before { sign_in user }
+        before { visit notes_path }
+
+        it { should have_content(note1.name) }
+        it { should have_content(note1.description) }
+        it { should have_content(note2.name) }
+        it { should have_content(note2.description) }
+
+        it { should_not have_content("New Note") }
+      end
+
+      describe "for an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before { sign_in admin }
+        before { visit notes_path }
+
+        it { should have_content(note1.name) }
+        it { should have_content(note1.description) }
+        it { should have_content(note2.name) }
+        it { should have_content(note2.description) }
+
+        it { should have_content("New Note") }
+      end
     end
   end
 end

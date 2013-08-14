@@ -1,10 +1,31 @@
 <% provide(:title, 'All notes') %>
 <h1>All notes</h1>
 
-<%= will_paginate %>
+<div class="row">
+	<div class="span12">
+		<%= will_paginate %>
 
-<ul class="users">
-  <%= render @notes %>
-</ul>
+		<ul class="users">
+		  <%= render @notes %>
+		</ul>
 
-<%= will_paginate %>
+		<%= will_paginate %>
+	</div>
+</div>
+<% if current_user != nil and current_user.admin? %>
+	<div class="row">
+		<div class="span12">
+			<h3>New Note</h3>
+
+			<%= form_for(Note.new) do |f| %>
+				<div class="field"><%= f.label :name %></div>
+				<div class="field"><%= f.text_field :name %></div>
+
+				<div class="field"><%= f.label :description %></div>
+				<div class="field"><%= f.text_field :description %></div>
+
+				<%= f.submit "New Note", class: "btn btn-large" %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
