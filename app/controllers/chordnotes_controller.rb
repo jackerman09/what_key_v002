@@ -6,8 +6,13 @@ class ChordnotesController < ApplicationController
   def create
   	@chord = Chord.find(params[:chordnote][:chord_id])
   	@note = Note.find(params[:chordnote][:note_id])
-  	@chord.addnote!(@note)
-  	redirect_to @chord
+  	if @chord.hasnote?(@note)
+  		# Add error message here, have it not redirect
+  		redirect_to @chord
+  	else
+  		@chord.addnote!(@note)
+  		redirect_to @chord
+  	end
   end
 
   def new
@@ -15,17 +20,9 @@ class ChordnotesController < ApplicationController
   end
 
   def destroy
+  	@chord = Chord.find(2)
+  	@note = Note.find(2)
+		Chordnote.find_by(note_id: @note.id, chord_id: @chord.id).destroy
+  	redirect_to chord_path(@chord)
   end
-
- #  def create
- #    @user = User.find(params[:relationship][:followed_id])
- #    current_user.follow!(@user)
- #    redirect_to @user
- #  end
-
- #  def destroy
- #    @user = Relationship.find(params[:id]).followed
- #    current_user.unfollow!(@user)
- #    redirect_to @user
-	# end
 end

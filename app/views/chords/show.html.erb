@@ -18,7 +18,8 @@
 		  <div class="field">
 		  	<%= f.text_field :note_id, placeholder: "Enter the note's id" %>
   		</div>
-		  <%= f.submit "Add Note", class: "btn btn-large btn-primary" %>
+		  <%= f.submit "Add Note", class: "btn btn-large" %>
+		  <%= link_to "Remove Note", Chordnote.find_by(note_id: 1), method: :delete, data: { confirm: "You sure?" }, title: "test title", class: "btn btn-large" %>
 		<% end %>
 	</div>
 </div>

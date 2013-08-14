@@ -16,6 +16,6 @@ class Chord < ActiveRecord::Base
 	end
 
 	def removenote!(note)
-		self.chordnotes.find_by(note_id: note.id).destroy!
+		self.chordnotes.find_by(note_id: note).destroy!
 	end
 end
