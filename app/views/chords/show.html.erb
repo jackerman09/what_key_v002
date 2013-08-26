@@ -7,7 +7,17 @@
 <div class="row">
 	<div class="span12">
   		<ol class="microposts">
-        <%= render @notes %>
+        <% @chord.notes.each do |note| %>
+        	<li id="NoteID<%= note.id %>" >
+					  <span class="content"><%= note.name %> (<%= note.description %>) (ID: <%= note.id %>)</span>
+					  <span class="timestamp">
+					    Created <%= time_ago_in_words(note.created_at) %> ago.
+					  </span>
+					  <span class="content">
+					  	<%= link_to "remove (not working)", '#' %>
+					  </span>
+					</li>
+				<% end %>
       </ol>
   </div>
 </div>
