@@ -1,6 +1,35 @@
 <% provide(:title, @key.name) %>
 <div class="row">
-  <aside class="span4">
+  <div class="span12">
   	<h3><%= @key.name %> (<%= @key.description %>)</h3>
-  </aside>
+  </div>
+</div>
+<div class="row">
+	<div class="span12">
+  	<ol class="microposts">
+        <% @key.chords.each do |chord| %>
+        	<li id="ChordID<%= chord.id %>" >
+					  <span class="content"><%= chord.name %> (<%= chord.description %>) (ID: <%= chord.id %>)</span>
+					  <span class="timestamp">
+					    Created <%= time_ago_in_words(chord.created_at) %> ago.
+					  </span>
+					  <span class="content">
+					  	<%= link_to "Remove Chord", keychord_path(:key_id => @key.id, :chord_id => chord.id), :method => :delete, class: "removeChord" %>
+					  </span>
+					</li>
+				<% end %>
+      </ol>
+  </div>
+</div>
+<div class="row">
+	<div class="span12">
+		<%= form_for(@key.keychords.build(key_id: @key.id)) do |f| %>
+		  <div><%= f.hidden_field :key_id, value: @key.id %></div>
+		  <div><%= hidden_field_tag :key_id_pass, :key_id %></div>
+		  <div class="field">
+		  	<%= f.text_field :chord_id, placeholder: "Enter the chord's id" %>
+  		</div>
+		  <%= f.submit "Add Chord", class: "btn btn-large" %>
+		<% end %>
+	</div>
 </div>

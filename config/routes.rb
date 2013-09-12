@@ -9,6 +9,7 @@ SampleApp::Application.routes.draw do
   resources :chords,      only: [:index, :show, :new, :destroy, :create]
   resources :notes,       only: [:index, :show, :new, :destroy, :create]
   resources :chordnotes,  only: [:new, :destroy, :create, :show]
+  resources :keychords,   only: [:new, :destroy, :create, :show]
 
   root to: 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

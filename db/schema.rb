@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813023402) do
+ActiveRecord::Schema.define(version: 20130912011204) do
 
   create_table "chordnotes", force: true do |t|
     t.integer  "note_id"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20130813023402) do
   end
 
   add_index "chords", ["is_public"], name: "index_chords_on_is_public"
+
+  create_table "keychords", force: true do |t|
+    t.integer  "key_id"
+    t.integer  "chord_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "keys", force: true do |t|
     t.string   "name"

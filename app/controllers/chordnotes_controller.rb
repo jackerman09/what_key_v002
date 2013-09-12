@@ -20,8 +20,6 @@ class ChordnotesController < ApplicationController
   # end
 
   def destroy
-  	# @chord = Chord.find(2)
-  	# @note = Note.find(1)
     @note = Note.find(params[:note_id])
     @chord = Chord.find(params[:chord_id])
 
