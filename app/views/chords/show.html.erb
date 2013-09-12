@@ -6,7 +6,7 @@
 </div>
 <div class="row">
 	<div class="span12">
-  		<ol class="microposts">
+  	<ol class="microposts">
         <% @chord.notes.each do |note| %>
         	<li id="NoteID<%= note.id %>" >
 					  <span class="content"><%= note.name %> (<%= note.description %>) (ID: <%= note.id %>)</span>
@@ -14,7 +14,7 @@
 					    Created <%= time_ago_in_words(note.created_at) %> ago.
 					  </span>
 					  <span class="content">
-					  	<%= link_to "remove (not working)", '#' %>
+					  	<%= link_to "Remove Note", chordnote_path(:chord_id => @chord.id, :note_id => note.id), :method => :delete, class: "removeNote" %>
 					  </span>
 					</li>
 				<% end %>
@@ -24,12 +24,12 @@
 <div class="row">
 	<div class="span12">
 		<%= form_for(@chord.chordnotes.build(chord_id: @chord.id)) do |f| %>
-		  <div><%= f.hidden_field :chord_id %></div>
+		  <div><%= f.hidden_field :chord_id, value: @chord.id %></div>
+		  <div><%= hidden_field_tag :chord_id_pass, :chord_id %></div>
 		  <div class="field">
 		  	<%= f.text_field :note_id, placeholder: "Enter the note's id" %>
   		</div>
 		  <%= f.submit "Add Note", class: "btn btn-large" %>
-		  <%= link_to "Remove Note", Chordnote.find_by(note_id: 1), method: :delete, data: { confirm: "You sure?" }, title: "test title", class: "btn btn-large" %>
 		<% end %>
 	</div>
 </div>
