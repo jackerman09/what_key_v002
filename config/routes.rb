@@ -1,4 +1,6 @@
 SampleApp::Application.routes.draw do
+  get "keychords/create"
+  get "keychords/destroy"
   resources :users do
     # member do
     #   get :following, :followers
