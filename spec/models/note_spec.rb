@@ -8,7 +8,7 @@ describe Note do
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
-  it { should respond_to(:noteinchords) }
+  it { should respond_to(:chordnotes) }
 
   it { should be_valid }
 
