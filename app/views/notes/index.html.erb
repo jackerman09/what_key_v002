@@ -6,15 +6,8 @@
 		<%= will_paginate %>
 
 		<ul class="users">
-		  <% if false %> <%= render @notes %><% end %> <!-- Line to replace .each with @notes partial, which exists -->
-		  <% @notes.each do |note| %>
-			  <li id="NoteID<%= note.id %>" >
-	  			<span class="content"><%= note.name %> (<%= note.description %>) (ID: <%= note.id %>)</span>
-	  			<span class="content">
-	  				<%= link_to "Remove", note_path(:id => note.id), :method => :delete %>
-				  </span>
-				</li>
-			<% end %>
+		  <%= render @notes %> <!-- Line to replace .each with @notes partial, which exists -->
+		  
 		</ul>
 
 		<%= will_paginate %>

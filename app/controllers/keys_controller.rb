@@ -24,6 +24,7 @@ class KeysController < ApplicationController
   def destroy
     Key.find(params[:id]).destroy
     flash[:success] = "Key removed."
+    redirect_to current_user
   end
 
   
