@@ -41,6 +41,7 @@ describe "Chord pages" do
   describe "viewing chords" do
     let!(:chord1) { FactoryGirl.create(:chord, user: user) }
     let!(:chord2) { FactoryGirl.create(:chord, user: user) }
+    let!(:note1)  { FactoryGirl.create(:note) }
 
     describe "on the index page" do
       before { visit chords_path }
@@ -56,6 +57,21 @@ describe "Chord pages" do
 
       it { should have_content(chord1.name) }
       it { should have_content(chord1.description) }
+      it { should_not have_content(note1.name) }
+
+      describe "when adding notes" do
+        before do
+          fill_in "chordnote_note_id", with: note1.id
+          click_button "Add Note"
+        end
+
+        it { should have_content(note1.name) }
+
+        describe "when removing notes" do
+          before { click_link 'Remove Note'}
+          it { should_not have_content(note1.name) }
+        end
+      end
     end
   end
 end

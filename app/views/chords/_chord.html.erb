@@ -1,18 +1,20 @@
-<li>
+<li class="chord">
   <span class="content"><%= link_to "#{chord.name} (#{chord.description})", chord %> (<%= chord.id %>)</span>
   <span class="timestamp">
     Created <%= time_ago_in_words(chord.created_at) %> ago.
   </span>
-  <span class="content"><%= link_to "remove", chord, method: :delete %></span>
-  <span class="timestamp">
-  <div style="margin-left: 25px">
-  <ol class="microposts">
-  	<% if chord.notes.any? %>
-      <ol class="microposts">
-        <%= render chord.notes %>
-      </ol>
-      
+  <span class="content">
+    <% if chord.notes.any? %>
+      <%= link_to "show notes", '#', class: "showremovenotes" %>
+      <span> // </span>
     <% end %>
-	</ol>
+    <%= link_to "remove", chord, method: :delete %>
+  </span>
+  <div class="notesholder">
+  	<% if chord.notes.any? %>
+      <ul class="notes">
+        <%= render chord.notes %>
+      </ul>
+    <% end %>
 	</div>
 </li>

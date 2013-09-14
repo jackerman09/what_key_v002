@@ -1,7 +1,20 @@
 <li>
 	<span class="content"><%= link_to "#{key.name} (#{key.description})", key %> (<%= key.id %>)</span>
-	  <span class="timestamp">
-	    Created <%= time_ago_in_words(key.created_at) %> ago.
-	  </span>
-	  <span class="content"><%= link_to "remove", key, method: :delete %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(key.created_at) %> ago.
+  </span>
+  <span class="content">
+		<% if key.chords.count > 0 %>
+			<%= link_to "show chords", '#', class: "showremovechords" %>
+			<span> // </span>
+		<% end %>
+		<%= link_to "remove", key, method: :delete %>  	
+	</span>
+  <div class="chordsholder">
+  	<% if key.chords.count > 0 %>
+      <ol class="chords">
+        <%= render key.chords %>
+      </ol>
+    <% end %>
+	</div>
 </li>

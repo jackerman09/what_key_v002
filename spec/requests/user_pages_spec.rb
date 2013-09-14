@@ -51,11 +51,18 @@ describe "User pages" do
   end
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
-    let!(:key1) { FactoryGirl.create(:key, user: user) }
+    let(:user)    { FactoryGirl.create(:user) }
+    let!(:key1)   { FactoryGirl.create(:key,    user: user) }
+    let!(:chord1) { FactoryGirl.create(:chord,  user: user) }
+    let!(:note1)  { FactoryGirl.create(:note) }
     # let!(:key1) { user.keys.build(name: "test", description: "test description", is_public: false) }
 
-    before { visit user_path(user) }
+    before do
+      visit chord_path(chord1)
+      fill_in "chordnote_note_id",    with: note1.id
+      click_button "Add Note"
+      visit user_path(user)
+    end
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
@@ -63,6 +70,15 @@ describe "User pages" do
     describe "keys" do
       it { should have_content(key1.name) }
       it { should have_content(key1.description) }
+    end
+
+    describe "chords" do
+      it { should have_content(chord1.name) }
+      it { should have_content(chord1.description) }
+      
+      describe "note" do
+        it { should have_content(note1.name) }
+      end
     end
   end
 

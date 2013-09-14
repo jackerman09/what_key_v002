@@ -13,7 +13,7 @@
   <div class="span6">
     <h3>My Keys (<%= @user.keys.count %>)</h3>
     <% if @user.keys.any? %>
-      <ol class="microposts">
+      <ol class="keys">
         <%= render @user.keys %>
       </ol>
       <%= will_paginate @keys %>
@@ -24,7 +24,7 @@
   <div class="span6">
     <h3>My Chords (<%= @user.chords.count %>)</h3>
     <% if @user.chords.any? %>
-      <ol class="microposts">
+      <ol class="chords">
         <%= render @user.chords %>
       </ol>
       <%= will_paginate @chords %>
