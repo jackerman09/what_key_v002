@@ -5,14 +5,20 @@ class ChordnotesController < ApplicationController
 
   def create
   	@chord = Chord.find(params[:chordnote][:chord_id])
-  	@note = Note.find(params[:chordnote][:note_id])
-  	if @chord.hasnote?(@note)
-  		# Add error message here, have it not redirect
-  		redirect_to @chord
-  	else
-  		@chord.addnote!(@note)
-  		redirect_to @chord
-  	end
+  	# @note = Note.find(params[:chordnote][:note_id])
+    @note = Note.find_by(name: params[:chordnote][:note_id].upcase)
+  	if @note != nil
+      if @chord.hasnote?(@note)
+    		flash[:error] = "Note already in chord."
+    		redirect_to @chord
+    	else
+    		@chord.addnote!(@note)
+    		redirect_to @chord
+    	end
+    else
+      flash[:error] = "Note does not exist."
+      redirect_to @chord
+    end
   end
 
   # def new

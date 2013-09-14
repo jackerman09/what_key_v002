@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130912011204) do
+ActiveRecord::Schema.define(version: 20130914203256) do
 
   create_table "chordnotes", force: true do |t|
     t.integer  "note_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130912011204) do
     t.boolean  "is_public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unique_name"
   end
 
   add_index "chords", ["is_public"], name: "index_chords_on_is_public"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20130912011204) do
     t.boolean  "is_public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unique_name"
   end
 
   add_index "keys", ["is_public"], name: "index_keys_on_is_public"

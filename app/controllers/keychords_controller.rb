@@ -1,14 +1,20 @@
 class KeychordsController < ApplicationController
   def create
   	@key = Key.find(params[:keychord][:key_id])
-  	@chord = Chord.find(params[:keychord][:chord_id])
-  	if @key.haschord?(@chord)
-  		# Add error message here, have it not redirect
-  		redirect_to @key
-  	else
-  		@key.addchord!(@chord)
-  		redirect_to @key
-  	end
+  	# @chord = Chord.find(params[:keychord][:chord_id])
+  	@chord = Chord.find_by(unique_name: params[:keychord][:chord_id].upcase)
+    if @chord != nil
+      if @key.haschord?(@chord)
+        flash[:error] = "Chord already in key."
+        redirect_to @key
+      else
+        @key.addchord!(@chord)
+        redirect_to @key
+      end
+    else
+      flash[:error] = "Chord does not exist."
+      redirect_to @key
+    end
   end
 
   def destroy

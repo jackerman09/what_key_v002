@@ -1,4 +1,6 @@
 class Key < ActiveRecord::Base
+	before_save { self.unique_name = name.upcase }
+
 	belongs_to :user
 	has_many	:keychords
 	has_many 	:chords, through: :keychords

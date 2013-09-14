@@ -6,7 +6,8 @@
 </div>
 <div class="row">
 	<div class="span12">
-  	<ol class="chords">
+		<h4>Notes in <%= @chord.name %></h4>
+  	<ol class="notes">
         <% @chord.notes.each do |note| %>
         	<li id="NoteID<%= note.id %>" >
 					  <span class="content"><%= note.name %> (<%= note.description %>) (ID: <%= note.id %>)</span>
@@ -14,7 +15,7 @@
 					    Created <%= time_ago_in_words(note.created_at) %> ago.
 					  </span>
 					  <span class="content">
-					  	<%= link_to "Remove Note", chordnote_path(:chord_id => @chord.id, :note_id => note.id), :method => :delete, class: "removeNote" %>
+					  	<%= link_to "remove from chord", chordnote_path(:chord_id => @chord.id, :note_id => note.id), :method => :delete, class: "removeNote" %>
 					  </span>
 					</li>
 				<% end %>
@@ -27,7 +28,7 @@
 		  <div><%= f.hidden_field :chord_id, value: @chord.id %></div>
 		  <div><%= hidden_field_tag :chord_id_pass, :chord_id %></div>
 		  <div class="field">
-		  	<%= f.text_field :note_id, placeholder: "Enter the note's id" %>
+		  	<%= f.text_field :note_id, placeholder: "Enter the note to add", id: "addnote" %>
   		</div>
 		  <%= f.submit "Add Note", class: "btn btn-large" %>
 		<% end %>

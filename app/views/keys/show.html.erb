@@ -6,7 +6,8 @@
 </div>
 <div class="row">
 	<div class="span12">
-  	<ol class="microposts">
+		<h4>Chords in <%= @key.name %></h4>
+  	<ol class="chords">
         <% @key.chords.each do |chord| %>
         	<li id="ChordID<%= chord.id %>" >
 					  <span class="content"><%= chord.name %> (<%= chord.description %>) (ID: <%= chord.id %>)</span>
@@ -14,7 +15,7 @@
 					    Created <%= time_ago_in_words(chord.created_at) %> ago.
 					  </span>
 					  <span class="content">
-					  	<%= link_to "Remove Chord", keychord_path(:key_id => @key.id, :chord_id => chord.id), :method => :delete, class: "removeChord" %>
+					  	<%= link_to "remove from key", keychord_path(:key_id => @key.id, :chord_id => chord.id), :method => :delete, class: "removeChord" %>
 					  </span>
 					</li>
 				<% end %>

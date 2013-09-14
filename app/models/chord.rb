@@ -1,4 +1,6 @@
 class Chord < ActiveRecord::Base
+	before_save { self.unique_name = name.upcase }
+
 	belongs_to 	:user
 	has_many	:chordnotes
 	has_many	:notes, through: :chordnotes
