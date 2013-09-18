@@ -23,14 +23,14 @@
   </div>
 </div>
 <div class="row">
-	<div class="span12">
+	<%= content_tag "div", class: "span12", id: "addNoteDiv", data: {url: Note.all } do %>
 		<%= form_for(@chord.chordnotes.build(chord_id: @chord.id)) do |f| %>
 		  <div><%= f.hidden_field :chord_id, value: @chord.id %></div>
 		  <div><%= hidden_field_tag :chord_id_pass, :chord_id %></div>
 		  <div class="field">
-		  	<%= f.text_field :note_id, placeholder: "Enter the note to add", id: "addnote" %>
+		  	<%= f.text_field :note_id, placeholder: "Enter the note to add", id: "addNoteField" %>
   		</div>
 		  <%= f.submit "Add Note", class: "btn btn-large" %>
 		<% end %>
-	</div>
+	<% end %>
 </div>

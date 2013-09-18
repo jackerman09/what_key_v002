@@ -5,8 +5,7 @@ class ChordnotesController < ApplicationController
 
   def create
   	@chord = Chord.find(params[:chordnote][:chord_id])
-  	# @note = Note.find(params[:chordnote][:note_id])
-    @note = Note.find_by(name: params[:chordnote][:note_id].upcase)
+    @note = Note.find_by(unique_name: params[:chordnote][:note_id].upcase)
   	if @note != nil
       if @chord.hasnote?(@note)
     		flash[:error] = "Note already in chord."

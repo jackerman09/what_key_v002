@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130914203256) do
+ActiveRecord::Schema.define(version: 20130918001605) do
 
   create_table "chordnotes", force: true do |t|
     t.integer  "note_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20130914203256) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unique_name"
   end
 
   create_table "relationships", force: true do |t|

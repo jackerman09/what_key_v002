@@ -23,14 +23,14 @@
   </div>
 </div>
 <div class="row">
-	<div class="span12">
+	<%= content_tag "div", class: "span12", id: "addChordDiv", data: {url: Chord.all } do %>
 		<%= form_for(@key.keychords.build(key_id: @key.id)) do |f| %>
 		  <div><%= f.hidden_field :key_id, value: @key.id %></div>
 		  <div><%= hidden_field_tag :key_id_pass, :key_id %></div>
 		  <div class="field">
-		  	<%= f.text_field :chord_id, placeholder: "Enter the chord's id" %>
+		  	<%= f.text_field :chord_id, placeholder: "Enter the chord's id", id: "addChordField" %>
   		</div>
 		  <%= f.submit "Add Chord", class: "btn btn-large" %>
 		<% end %>
-	</div>
+	<% end %>
 </div>

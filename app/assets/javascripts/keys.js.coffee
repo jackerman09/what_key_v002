@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery ->
+	allChords = []
+	allChordObjects = $('#addChordDiv').data('url')
+	for index, chord of allChordObjects
+		allChords.push(chord.name)
+		console.log(allChords)
+	$('#addChordField').autocomplete({
+		source: allChords
+		}).focus()
