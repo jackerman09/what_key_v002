@@ -61,14 +61,14 @@ describe "Chord pages" do
 
       describe "when adding notes" do
         before do
-          fill_in "chordnote_note_id", with: note1.id
+          fill_in "addNoteField", with: note1.name
           click_button "Add Note"
         end
 
         it { should have_content(note1.name) }
 
         describe "when removing notes" do
-          before { click_link 'Remove Note'}
+          before { click_link 'remove from chord'}
           it { should_not have_content(note1.name) }
         end
       end

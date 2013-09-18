@@ -18,4 +18,13 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def redirect_to_called_from_or(default)
+    redirect_to(session[:return_to_called_from] || default)
+    session.delete(:return_to_called_from)
+  end
+
+  def store_called_from_location
+    session[:return_to_called_from] = request.url
+  end
 end

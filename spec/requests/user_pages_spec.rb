@@ -58,7 +58,7 @@ describe "User pages" do
 
     before do
       visit chord_path(chord1)
-      fill_in "chordnote_note_id", with: note1.name
+      fill_in "addNoteField", with: note1.name
       click_button "Add Note"
       visit user_path(user)
     end
@@ -76,7 +76,7 @@ describe "User pages" do
       it { should have_content(chord1.description) }
       
       describe "with hidden notes" do
-        it { should_not have_content(note1.name) }
+        it { should_not have_content(note1.name, visible: true) }
 
         describe "that have been shown" do
           before do

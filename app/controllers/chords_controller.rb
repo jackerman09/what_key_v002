@@ -1,4 +1,5 @@
 class ChordsController < ApplicationController
+
   def index
   	@chords = Chord.paginate(page: params[:page])
   end
@@ -16,7 +17,7 @@ class ChordsController < ApplicationController
   	@chord = current_user.chords.new(chord_params)
     if @chord.save
       flash[:success] = "Chord added."
-      redirect_to current_user
+      redirect_to @chord
     else
       render 'new'
     end
@@ -40,5 +41,5 @@ class ChordsController < ApplicationController
 
   	def chord_params
       params.require(:chord).permit(:name, :description)
-    end  
+    end
 end
