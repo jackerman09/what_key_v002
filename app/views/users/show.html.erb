@@ -28,8 +28,6 @@
         <%= render @user.chords %>
       </ol>
       <%= will_paginate @chords %>
-    <% else %>
-      </br>
     <% end %>
     <%= link_to "New Chord", new_chord_path, 
                                 class: "btn btn-large" %>
