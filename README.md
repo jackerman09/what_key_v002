@@ -1,5 +1,3 @@
-# Ruby on Rails Tutorial: sample application
+WhatKeyAmIIn.com
 
-This is the reference implementation of the sample application for
-the [*Ruby on Rails Tutorial*](http://railstutorial.org/)
-by [Michael Hartl](http://michaelhartl.com/).
+An app to help give you a the music theory you need to get the most out of your instrument in the limited free time you have.
